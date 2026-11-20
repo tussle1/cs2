@@ -4,7 +4,7 @@
    Bump VERSION when you ship changes.
    ============================================================ */
 
-const VERSION = 'winxp-v2';
+const VERSION = 'winxp-v3';
 
 const PRECACHE = [
   './',

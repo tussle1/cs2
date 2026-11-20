@@ -44,10 +44,27 @@ const HELP_HTML = `
   <p>Two honest limits: a website that needs JavaScript will render empty or broken, and a static host has no proxy
   at all — the address bar will say so and the ↗ button opens the page in a normal tab.</p>
 
+  <h2>Installing Windows in the Virtual PC</h2>
+  <p>v86 emulates a <b>32-bit</b> Pentium-class PC, so 64-bit Windows cannot run — but Windows 95, 98, ME,
+  NT 4.0, 2000 and XP (32-bit) do, given an ISO you own.</p>
+  <ol>
+    <li>Open <b>Virtual PC</b> → <b>Install Windows from an ISO</b> (or the 💿 CD button).</li>
+    <li>Create a hard disk: 256–512 MB for Windows 98, 1 GB for 2000, 2 GB for XP.</li>
+    <li>Keep <b>Boot: CD first</b> and press <b>Power on</b>. Setup partitions the blank disk itself.</li>
+    <li>Windows 95 has no bootable CD: insert a 98/ME boot floppy, boot from it, run <code>SETUP.EXE</code>
+      from <code>D:</code>.</li>
+    <li>Windows 2000/XP: at <b>“Press F5”</b> choose <b>Standard PC</b> — the emulated machine has no ACPI.
+      If setup hangs, reboot and press <b>F7</b> instead.</li>
+    <li>When the installer reboots, let it; then <b>Media → Save disk to this browser</b> so the installation
+      survives a reload. <b>Export disk</b> writes a real <code>.img</code> file you can keep.</li>
+  </ol>
+  <p>Expect 10–40 minutes and an authentically 1999-speed machine. A 2 GB disk plus 128 MB of RAM has to fit
+  in one browser tab, so keep images modest on a Chromebook.</p>
+
   <h2>The Virtual PC</h2>
   <p>Not a simulation of a computer but an actual one: v86 emulates a Pentium-class CPU in WebAssembly, with
-  SeaBIOS, a VGA card, PS/2 keyboard and mouse, a floppy controller and an IDE controller. It boots
-  <b>KolibriOS&nbsp;0.7.7</b>, a complete graphical open-source OS in 1.4&nbsp;MB, straight from this page.</p>
+  SeaBIOS, a VGA card, PS/2 keyboard and mouse, a floppy controller, IDE (disk + CD-ROM) and a Sound Blaster 16.
+  It boots <b>KolibriOS&nbsp;0.7.7</b>, a complete graphical open-source OS in 1.4&nbsp;MB, straight from this page.</p>
   <ul>
     <li>Drop a <code>.img</code>, <code>.ima</code>, <code>.iso</code> or disk image on the window to boot it instead.
       A Windows 95/98 CD works if you own one.</li>

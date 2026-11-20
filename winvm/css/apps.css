@@ -470,6 +470,34 @@
 .vm-error h1{font-size:18px}
 .vm-error code{background:#0006;padding:1px 5px;border-radius:3px;font-size:11px}
 
+/* device chips under the Virtual PC toolbar */
+.vm-devices{
+  display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:4px 8px;flex:0 0 auto;
+  background:linear-gradient(180deg,#f4f2ea,#e4e0d2);border-bottom:1px solid #c9c5b6;
+}
+.vm-chip{
+  display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;
+  border:1px solid #b9b4a4;border-radius:11px;background:linear-gradient(180deg,#fff,#eee9dc);
+  font:11px/1 Tahoma,sans-serif;color:#333;cursor:pointer;max-width:210px;
+}
+.vm-chip:hover{border-color:#7f9dc4;background:linear-gradient(180deg,#fff,#e8f0fb)}
+.vm-chip b{color:#4a4433;font-weight:700}
+.vm-chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#26407a}
+.vm-storage{margin-left:auto;font:10px Tahoma,sans-serif;color:#6a6355;white-space:nowrap}
+
+/* the two ways into the machine */
+.vm-choices{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:16px 0 10px}
+.vm-choice{
+  display:flex;flex-direction:column;align-items:flex-start;gap:4px;width:238px;padding:14px 14px 12px;
+  text-align:left;cursor:pointer;color:#dce8f7;border:1px solid #3d4a5e;border-radius:8px;
+  background:linear-gradient(180deg,#1e2733,#151b24);
+  box-shadow:0 4px 14px #0007;
+}
+.vm-choice:hover{border-color:#6fa8e8;background:linear-gradient(180deg,#243140,#182029);color:#fff}
+.vm-choice-icon{font-size:22px;line-height:1}
+.vm-choice b{font:600 13px "Trebuchet MS",var(--font);color:#fff}
+.vm-choice i{font-style:normal;font-size:11px;line-height:1.45;color:#9db0c8}
+
 /* real web inside Internet Explorer */
 .ie-realbar{
   display:flex;align-items:center;gap:8px;padding:3px 8px;flex:0 0 auto;

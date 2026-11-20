@@ -53,22 +53,48 @@ answer for anything interactive. Behind a corporate TLS-inspecting proxy, start 
 
 *Start → All Programs → System Tools → Virtual PC*, or the desktop icon, or `?app=vm`.
 
-This is not a simulation of a computer. v86 emulates a Pentium-class CPU in WebAssembly, with SeaBIOS, a VGA card,
-a PS/2 keyboard and mouse, a floppy controller and an IDE controller; the guest really executes x86 instructions.
-It boots **KolibriOS 0.7.7**, a complete open-source graphical operating system that fits on a 1.44 MB floppy.
+This is not a simulation of a computer. v86 emulates a Pentium-class CPU in WebAssembly, with SeaBIOS, a VGA card
+with VBE, a PS/2 keyboard and mouse, a floppy controller, IDE (hard disk **and** CD-ROM) and a Sound Blaster 16;
+the guest really executes x86 instructions. It boots **KolibriOS 0.7.7**, a complete open-source graphical
+operating system that fits on a 1.44 MB floppy.
+
+### Machines you can build
+
+| Devices | What for |
+| --- | --- |
+| 💿 **CD** | Insert an `.iso`. Bootable Windows discs start setup by themselves. |
+| 🗄 **Disk** | Create a blank hard disk (256 MB – 2 GB) or attach an existing image file; the guest writes straight into it. |
+| 💾 **Floppy** | The bundled KolibriOS by default; insert any `.img`/`.ima` (e.g. a Windows 98 boot floppy). |
+| **Boot** | Which device SeaBIOS tries first: CD-ROM, hard disk or floppy. |
+| **RAM** | 64 / 128 / 256 / 512 MB — 98 likes 128, 2000 likes 256, XP likes 512. |
+
+### Installing a 32-bit Windows you own
+
+1. **💿 CD** → choose your ISO, then **🗄 Disk → Create new…** (256–512 MB for 98, 1 GB for 2000, 2 GB for XP).
+2. Leave **Boot: CD first** and press **⏻ Power on**. Setup partitions the blank disk itself.
+3. Windows 95 has no bootable CD: insert a 98/ME boot floppy, boot it, then run `SETUP.EXE` from `D:`.
+4. Windows 2000/XP: when setup says **“Press F5”**, choose **Standard PC** — this machine has no ACPI, and
+   Standard PC installs cleanly. If setup stalls, reboot and press **F7** (“Disable ACPI”) instead.
+5. Let the machine reboot when it asks; then **Media → Save disk to this browser** so the installation survives
+   a reload, or **Export disk** to keep a real `.img` file on your own computer.
+
+**64-bit Windows cannot run here.** v86 emulates a 32-bit CPU; x86-64 instructions do not exist in it, and a
+64-bit Windows image would fault at the first long-mode instruction. There is no setting that changes that.
+
+### Keeping the machine
 
 | Feature | How |
 | --- | --- |
-| Boot the bundled OS | Press **⏻ Power on**; KolibriOS reaches its desktop in a few seconds. |
-| Boot your own OS | **Boot from → Your own floppy / ISO / disk image…**, or drag a file onto the window. `.iso` → CD-ROM, 1.44 MB images → floppy, everything else → hard disk. Windows 95/98 discs work if you own one. |
-| Keep installed programs | The image you inserted is remembered in this browser (IndexedDB); a hard-disk image keeps its writes, so an OS you install stays installed. |
-| Freeze the whole machine | **Save state** / **Restore state** — the CPU, RAM and devices are written to IndexedDB and resumed later. |
-| Speed | Pause, reset, full screen, and a Fit/1:1 zoom for the 1024×768 screen. |
-| Media | **⏏ Eject** drops back to the bundled floppy. |
+| Keep the disk | **Media → Save disk to this browser** (IndexedDB). Auto-saved when you power off, pause or close the window. The chip shows `•` while there are unsaved writes. |
+| Keep the CD | ISOs under 900 MB are remembered too, so you do not have to hunt for the disc again. |
+| Freeze the whole machine | **Save machine state** / **Restore machine state** — CPU, RAM and devices in IndexedDB. |
+| Take the image with you | **Export disk** → a real `.img` you can open in QEMU/VirtualBox, or attach again later. |
+| Clean up | **Media → Forget saved images** removes the disk, CD and state from this browser. |
 
-Expect roughly what a 1999 machine felt like: the emulator runs tens of millions of instructions per second, which
-is plenty for KolibriOS and fine for Windows 95/98, and slow for anything modern. Loading the emulator the first time
-downloads 2 MB of WebAssembly; it is cached afterwards, offline included.
+Storage is visible in the chips row (`browser storage: 412 MB of 8 GB`). A 2 GB disk plus 128 MB of RAM has to
+fit inside one tab, so keep images modest on a Chromebook; if allocation fails, the window says so instead of
+silently dying. Expect roughly 1999 performance: the emulator runs tens of millions of instructions per second,
+plenty for KolibriOS and workable for 98/2000, and slow for XP.
 
 Licences for everything in `vendor/` (v86 = BSD-2-Clause, SeaBIOS/VGABIOS = LGPL, KolibriOS = GPL-2.0, with source
 links) are listed in [`vendor/NOTICE.md`](vendor/NOTICE.md).
@@ -123,7 +149,7 @@ Any static host works, because there is no build step and no server-side code:
 | **File system** | A real virtual `C:` drive (plus `A:` and `D:`) in `localStorage`, folders, text files and PNG images, rename/delete/copy/move, Recycle Bin with restore and empty |
 | **Programs** | My Computer / Explorer (icons, list and details views), Notepad, Paint, Command Prompt, Calculator, Minesweeper, Solitaire, Internet Explorer, Media Player, Control Panel, Display Properties, Task Manager, Help and Support, Virtual PC, Run…, Character/About dialogs |
 | **Real internet** | Internet Explorer through the `server.mjs` proxy: any address, sanitised HTML in a sandboxed frame, proxy-routed links, downloads into `C:\\…\\My Documents\\Downloads`, ↗ to a real tab |
-| **Virtual PC** | v86 (WebAssembly) + SeaBIOS + a bundled KolibriOS 0.7.7 floppy; boot your own floppy/ISO/disk image by picker or drag-and-drop; disk persistence and full machine save/restore in IndexedDB |
+| **Virtual PC** | v86 (WebAssembly) + SeaBIOS: CD-ROM, hard disk (256 MB–2 GB), floppy, boot order and 64–512 MB RAM; bundled KolibriOS 0.7.7; install your own 32-bit Windows from an ISO; disk/ISO persistence, full machine save/restore and `.img` export |
 | **Command Prompt** | `help`, `ver`, `dir`, `cd`, `cls`, `echo`, `type`, `mkdir`, `rmdir`, `del`, `copy`, `move`, `ren`, `tree`, `date`, `time`, `set`, `path`, `hostname`, `whoami`, `vol`, `ipconfig`, `ping`, `systeminfo`, `tasklist`, `title`, `color`, `start`, `shutdown /s|/r|/l`, `exit`, history with ↑/↓ and Ctrl+L |
 | **Paint** | Pencil, brush, eraser, airbrush, flood fill, colour picker, line, rectangle, ellipse, palette, undo, invert and flip, saves real PNGs into My Pictures |
 | **Games** | Minesweeper (three levels, flags, timer, best times) and Klondike Solitaire (click-to-move or double-click to send home, undo) |

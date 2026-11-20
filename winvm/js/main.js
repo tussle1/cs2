@@ -205,8 +205,12 @@ async function start() {
         iconName: 'info',
         width: 430,
         text: 'Welcome to a complete Windows XP desktop running in a single web page.\n\n'
-          + 'Nothing was installed and nothing is downloading: this is a faithful re-creation in '
-          + 'HTML, CSS and JavaScript.\n\nDouble-click the icons, open Start, or press F1 for a tour.',
+          + 'Nothing was installed and nothing is downloading: the shell is a faithful re-creation in '
+          + 'HTML, CSS and JavaScript.\n\n'
+          + 'Two things go further than a re-creation: Internet Explorer can reach the REAL internet '
+          + 'through the little proxy server, and Virtual PC is a genuine x86 machine that boots a real '
+          + 'operating system — or any 32-bit Windows disc image you own.\n\n'
+          + 'Double-click the icons, open Start, or press F1 for a tour.',
         buttons: ['Take a look'],
       });
     }, 900);
