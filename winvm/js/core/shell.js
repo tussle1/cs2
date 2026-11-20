@@ -25,6 +25,7 @@ export const EXE_ALIASES = {
   'control': 'control', 'control.exe': 'control',
   'explorer': 'explorer', 'explorer.exe': 'explorer',
   'help': 'help', 'winhelp': 'help',
+  'vm': 'vm', 'virtualpc': 'vm', 'vpc': 'vm', 'kolibri': 'vm', 'qemu': 'vm',
   'winver': 'about', 'about': 'about',
   'cmd.exe': 'cmd',
 };

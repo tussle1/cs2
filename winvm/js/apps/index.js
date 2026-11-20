@@ -15,6 +15,7 @@ import * as control from './control.js';
 import * as display from './display.js';
 import * as taskmgr from './taskmgr.js';
 import * as recycle from './recycle.js';
+import * as vm from './vm.js';
 import * as help from './help.js';
 
 export const APPS = {
@@ -31,6 +32,7 @@ export const APPS = {
   display,
   taskmgr,
   recycle,
+  vm,
   help,
   about: { launch: help.launchAbout },
   run: { launch: help.launchRun },

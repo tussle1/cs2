@@ -140,6 +140,18 @@ I.run = wrap(`
   <path d="M8 13l4 3-4 3" stroke="#7bff7b" stroke-width="1.8" fill="none" stroke-linecap="round"/>
   <path d="M14 19h6" stroke="#7bff7b" stroke-width="1.8" stroke-linecap="round"/>`);
 
+I.vm = wrap(`
+  <defs>${defs.metal}${defs.dark}</defs>
+  <rect x="2" y="4" width="28" height="19" rx="2" fill="url(#gMetal)" stroke="#6f7885" stroke-width="1.2"/>
+  <rect x="4" y="6" width="24" height="14" fill="#0d1b2a"/>
+  <rect x="6.5" y="8.5" width="19" height="9" rx="1" fill="#123047"/>
+  <path d="M8.5 11.5l2 2-2 2" stroke="#7bff7b" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+  <path d="M12.5 15.5h4" stroke="#7bff7b" stroke-width="1.4" stroke-linecap="round"/>
+  <path d="M20 11h3M20 13.5h3M20 16h2" stroke="#7fb8f5" stroke-width="1.2" stroke-linecap="round"/>
+  <rect x="13" y="23" width="6" height="3" fill="#9aa3ae"/>
+  <path d="M7 28h18l1 2H6z" fill="url(#gDark)"/>
+  <circle cx="25.5" cy="21" r="1" fill="#7bff7b"/>`);
+
 /* ---------- Files ---------- */
 I.folder = wrap(`
   <defs>${defs.folder}${defs.folderD}</defs>

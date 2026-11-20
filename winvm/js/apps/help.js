@@ -28,11 +28,32 @@ const HELP_HTML = `
     <tr><td>Calculator</td><td>Standard arithmetic with memory keys and keyboard input.</td></tr>
     <tr><td>Minesweeper</td><td>Beginner, Intermediate and Expert, with flags and best times.</td></tr>
     <tr><td>Solitaire</td><td>Klondike: click a card, then click where it should go; double-click sends it home.</td></tr>
-    <tr><td>Internet Explorer</td><td>A small built-in internet with five pages and a working Back button.</td></tr>
+    <tr><td>Internet Explorer</td><td>Five built-in pages <i>and</i> the real internet through the local proxy: type any address, or press 🌐 Real web.</td></tr>
+    <tr><td>Virtual PC</td><td>A real x86 computer emulated in WebAssembly. Boots the bundled KolibriOS, or any floppy / ISO / disk image you drop on it.</td></tr>
     <tr><td>Media Player</td><td>Four synthesised tracks with a live visualiser (Web Audio).</td></tr>
     <tr><td>Control Panel</td><td>Wallpaper, colour scheme, screen saver, sounds, clock, user name, system info.</td></tr>
     <tr><td>Task Manager</td><td>Applications, processes, CPU and memory graphs; end tasks for real.</td></tr>
   </table>
+
+  <h2>The real internet</h2>
+  <p>Type an address into Internet Explorer and press <kbd>Enter</kbd>. When the page is served by
+  <code>server.mjs</code>, the little proxy at <code>/api/fetch</code> fetches the real site, strips every script,
+  frame and inline event handler, and hands the result to a sandboxed frame. Links are rewritten to travel back
+  through the proxy, so you can keep clicking. Files that are not pages (images, ZIPs, PDFs) offer to save into
+  <b>My Documents\Downloads</b>.</p>
+  <p>Two honest limits: a website that needs JavaScript will render empty or broken, and a static host has no proxy
+  at all — the address bar will say so and the ↗ button opens the page in a normal tab.</p>
+
+  <h2>The Virtual PC</h2>
+  <p>Not a simulation of a computer but an actual one: v86 emulates a Pentium-class CPU in WebAssembly, with
+  SeaBIOS, a VGA card, PS/2 keyboard and mouse, a floppy controller and an IDE controller. It boots
+  <b>KolibriOS&nbsp;0.7.7</b>, a complete graphical open-source OS in 1.4&nbsp;MB, straight from this page.</p>
+  <ul>
+    <li>Drop a <code>.img</code>, <code>.ima</code>, <code>.iso</code> or disk image on the window to boot it instead.
+      A Windows 95/98 CD works if you own one.</li>
+    <li><b>Save state</b> stores the whole machine in this browser; <b>Restore state</b> brings it back.</li>
+    <li>The disk image you inserted is remembered, so programs you install into it are still there next time.</li>
+  </ul>
 
   <h2>Where your files live</h2>
   <p>Your C: drive lives in this browser’s <code>localStorage</code>. Files survive a refresh and are

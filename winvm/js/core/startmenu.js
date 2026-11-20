@@ -30,6 +30,7 @@ export function initStartMenu(ctx) {
     { label: 'Windows Media Player', icon: 'media', app: 'media' },
     { sep: true },
     { header: 'System Tools' },
+    { label: 'Virtual PC', icon: 'vm', app: 'vm' },
     { label: 'Control Panel', icon: 'control', app: 'control' },
     { label: 'Task Manager', icon: 'exe', app: 'taskmgr' },
     { label: 'System Information', icon: 'computer', app: 'control', opts: { panel: 'system' } },

@@ -4,7 +4,7 @@
    Bump VERSION when you ship changes.
    ============================================================ */
 
-const VERSION = 'winxp-v1';
+const VERSION = 'winxp-v2';
 
 const PRECACHE = [
   './',
@@ -17,6 +17,10 @@ const PRECACHE = [
   './assets/icon-512.png',
   './assets/icon-maskable-512.png',
   './assets/apple-touch-icon.png',
+  './vendor/v86/libv86.mjs',
+  './vendor/bios/seabios.bin',
+  './vendor/bios/vgabios.bin',
+  './vendor/os/kolibrios.img',
   './js/main.js',
   './js/apps/index.js',
   './js/apps/calc.js',
@@ -79,6 +83,7 @@ self.addEventListener('fetch', (event) => {
   if (request.method !== 'GET') return;
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
+  if (url.pathname.startsWith('/api/')) return; // proxy responses are never cached
 
   // Page loads: network first (fresh code), cache as the offline fallback.
   if (request.mode === 'navigate') {

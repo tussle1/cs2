@@ -27,6 +27,10 @@ export function initDesktop(ctx) {
       open: () => ctx.openApp('recycle'),
     },
     {
+      name: 'Virtual PC', icon: 'vm', kind: 'system',
+      open: () => ctx.openApp('vm'),
+    },
+    {
       name: 'Internet Explorer', icon: 'ie', kind: 'system',
       open: () => ctx.openApp('ie', { url: 'http://www.arena.ai/', singleton: 'ie-home' }),
     },

@@ -146,6 +146,12 @@ function initTaskbar() {
 /* ---------------- keyboard ---------------- */
 function initKeys() {
   document.addEventListener('keydown', (e) => {
+    if (window.__vmCapture) {
+      // the Virtual PC window owns the keyboard (Esc is handled by the machine itself,
+      // but also releases capture so desktop shortcuts work again)
+      if (e.key === 'Escape') window.__vmRelease?.();
+      return;
+    }
     if (e.key === 'Escape') { closeMenus(); return; }
     if (e.key === 'F1') { e.preventDefault(); ctx.openApp('help'); return; }
     if (e.altKey && e.key === 'Tab') { e.preventDefault(); wm.cycle(); return; }
@@ -212,6 +218,7 @@ async function start() {
     const opts = {};
     if (params.get('path')) opts.path = params.get('path');
     if (params.get('url')) opts.url = params.get('url');
+    if (params.get('boot') || params.get('power')) opts.power = true;
     setTimeout(() => ctx.openApp(params.get('app'), opts), 200);
   }
   if (params.get('saver')) setTimeout(() => startSaver(params.get('saver')), 300);
