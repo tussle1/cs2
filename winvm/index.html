@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Windows XP — in your browser</title>
+<meta name="description" content="A complete Windows XP desktop that runs entirely in your browser. No installation, no downloads, no VM image." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a246a'/%3E%3Cpath d='M6 10l9-2v7H6z' fill='%23e04a3a'/%3E%3Cpath d='M17 7.6L26 6v9h-9z' fill='%237bc043'/%3E%3Cpath d='M6 17h9v7l-9-2z' fill='%233d8fd8'/%3E%3Cpath d='M17 17h9v9l-9-1.6z' fill='%23f2c14e'/%3E%3C/svg%3E" />
+<link rel="stylesheet" href="css/xp.css" />
+<link rel="stylesheet" href="css/apps.css" />
+</head>
+<body class="booting">
+
+<!-- ============ BOOT / LOGIN / SHUTDOWN LAYER ============ -->
+<div id="bootlayer" aria-hidden="true"></div>
+
+<!-- ============ DESKTOP ============ -->
+<main id="desktop" aria-label="Desktop">
+  <div id="wallpaper"></div>
+  <div id="icons" role="list" aria-label="Desktop icons"></div>
+  <div id="marquee" hidden></div>
+  <div id="windows"></div>
+</main>
+
+<!-- ============ TASKBAR ============ -->
+<footer id="taskbar">
+  <button id="start-button" type="button" aria-haspopup="true" aria-expanded="false">
+    <span class="start-flag" aria-hidden="true"></span>
+    <span class="start-label">start</span>
+  </button>
+  <div id="quicklaunch" aria-label="Quick Launch"></div>
+  <div id="tasks" role="tablist" aria-label="Open windows"></div>
+  <div id="tray">
+    <div id="tray-icons"></div>
+    <button id="clock" type="button" title="Date and time"></button>
+  </div>
+</footer>
+
+<div id="start-menu" hidden></div>
+<div id="menu-layer"></div>
+<div id="modal-layer"></div>
+<div id="screensaver" hidden></div>
+
+<script type="module" src="js/main.js"></script>
+<noscript><p style="color:#fff;font:16px sans-serif;padding:2em">Please enable JavaScript to boot Windows.</p></noscript>
+</body>
+</html>
