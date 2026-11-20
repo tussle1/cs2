@@ -39,6 +39,11 @@ const HELP_HTML = `
   private to this browser profile. Nothing is uploaded. To start over, open
   <b>Control Panel → System → Restore this computer</b>.</p>
 
+  <h2>Install it as an app (Chromebook, Windows, Mac, Linux)</h2>
+  <p>This page is an installable web app. In Chrome or Edge, click the <b>install</b> icon in the address bar
+  (or <b>⋮ menu → Cast, save and share → Install page as app</b>). On a Chromebook it then lives in the
+  Launcher, opens in its own window with no browser chrome, and keeps working with no Wi-Fi at all.</p>
+
   <h2>Is this a virtual machine?</h2>
   <p>No. There is no x86 emulator and no Windows disk image here — that would mean a 300&nbsp;MB download and
   a licence. This is a from-scratch re-implementation of the Windows XP shell and a dozen programs in

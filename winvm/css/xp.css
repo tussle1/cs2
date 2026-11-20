@@ -78,7 +78,7 @@ input,textarea,select{font:inherit}
 ::selection{background:var(--sel);color:#fff}
 
 /* ---------------- Desktop ---------------- */
-#desktop{position:fixed;inset:0 0 30px 0;overflow:hidden}
+#desktop{position:fixed;inset:0 0 calc(30px + env(safe-area-inset-bottom, 0px)) 0;overflow:hidden}
 #wallpaper{
   position:absolute;inset:0;
   background:var(--desk) center/cover no-repeat;
@@ -125,7 +125,9 @@ input,textarea,select{font:inherit}
 
 /* ---------------- Taskbar ---------------- */
 #taskbar{
-  position:fixed;left:0;right:0;bottom:0;height:30px;
+  position:fixed;left:0;right:0;bottom:0;
+  height:calc(30px + env(safe-area-inset-bottom, 0px));
+  padding-bottom:env(safe-area-inset-bottom, 0px);
   display:flex;align-items:stretch;
   background:linear-gradient(180deg,var(--taskbar-a) 0%,var(--taskbar-b) 9%,var(--taskbar-b) 88%,var(--taskbar-c) 100%);
   border-top:1px solid rgba(255,255,255,.55);
@@ -228,7 +230,7 @@ input,textarea,select{font:inherit}
 
 /* ---------------- Start menu ---------------- */
 #start-menu{
-  position:fixed;left:0;bottom:30px;width:396px;z-index:9500;
+  position:fixed;left:0;bottom:calc(30px + env(safe-area-inset-bottom, 0px));width:396px;z-index:9500;
   border-radius:8px 8px 0 0;overflow:hidden;
   box-shadow:0 -2px 18px rgba(0,0,0,.5);
   font-size:11px;
@@ -325,7 +327,7 @@ input,textarea,select{font:inherit}
 .win.dialog{min-width:0}
 
 .titlebar{
-  flex:0 0 auto;height:28px;display:flex;align-items:center;gap:6px;
+  flex:0 0 auto;height:28px;touch-action:none;display:flex;align-items:center;gap:6px;
   padding:0 4px 0 6px;
   background:linear-gradient(180deg,var(--title-hi) 0%,var(--title) 42%,var(--title-lo) 100%);
   color:#fff;font:bold 12px/1 var(--font);
@@ -377,7 +379,7 @@ input,textarea,select{font:inherit}
 
 .win-body{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;background:var(--face);overflow:hidden}
 
-.resize{position:absolute;z-index:5}
+.resize{position:absolute;z-index:5;touch-action:none}
 .resize.n{top:0;left:10px;right:10px;height:5px;cursor:ns-resize}
 .resize.s{bottom:0;left:10px;right:10px;height:5px;cursor:ns-resize}
 .resize.e{right:0;top:10px;bottom:10px;width:5px;cursor:ew-resize}

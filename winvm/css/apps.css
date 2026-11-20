@@ -104,7 +104,7 @@
   flex:1 1 auto;min-width:0;overflow:auto;padding:6px;
   background:#8f8f8f;display:block;
 }
-.paint-canvas-wrap{background:#fff;display:inline-block;box-shadow:0 1px 3px rgba(0,0,0,.4);position:relative;cursor:crosshair}
+.paint-canvas-wrap{background:#fff;display:inline-block;box-shadow:0 1px 3px rgba(0,0,0,.4);position:relative;cursor:crosshair;touch-action:none}
 .paint-canvas-wrap canvas{display:block;image-rendering:pixelated}
 .paint-side{flex:0 0 46px;background:var(--face);border-left:1px solid #c9c5b6;padding:4px;display:flex;flex-direction:column;align-items:center;gap:6px}
 .paint-swatches{display:grid;grid-template-columns:1fr 1fr;gap:2px;width:100%}

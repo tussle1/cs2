@@ -218,7 +218,21 @@ async function start() {
   if (params.get('nosound')) settings.set('sounds', false);
 }
 
+/* ---------------- installable / offline ---------------- */
+function registerServiceWorker() {
+  if (!('serviceWorker' in navigator)) return;
+  if (!/^https?:$/.test(location.protocol)) return; // file:// has no SW support
+  if (new URLSearchParams(location.search).get('nosw')) return;
+  const register = () => {
+    navigator.serviceWorker.register('sw.js', { scope: './' })
+      .catch((err) => console.warn('[winxp] service worker failed:', err.message));
+  };
+  if (document.readyState === 'complete') register();
+  else window.addEventListener('load', register, { once: true });
+}
+
 window.winxp = { ctx, wm, fs, settings, sfx, openApp: (...a) => ctx.openApp(...a) };
+registerServiceWorker();
 
 start().catch((err) => {
   console.error(err);

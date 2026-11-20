@@ -10,6 +10,49 @@ node server.mjs 8080      # then open http://localhost:8080/
 
 (Any static file server works — `python3 -m http.server` is fine too. There is no build step.)
 
+It is also an **installable web app** (manifest + service worker + icons): in Chrome or Edge it installs from
+the address bar, opens in its own window, and then runs **completely offline** — which is the easiest way to
+put it on a Chromebook. See [Install on a Chromebook](#install-on-a-chromebook).
+
+## Install on a Chromebook
+
+### Option 1 — install it as an app (no developer mode, 20 seconds)
+
+1. Open the page in Chrome on the Chromebook (the live preview URL, or your own hosted copy).
+2. Click the **install** icon at the right end of the address bar — or **⋮ → Cast, save and share → Install page
+   as app…** (older ChromeOS: **⋮ → More tools → Create shortcut…** and tick **Open as window**).
+3. Name it **Windows XP** → **Install**. It now sits in the Launcher (press the Everything key and type
+   "Windows XP"), opens in a bare window with no browser chrome, and keeps working with Wi-Fi switched off,
+   because the service worker caches every file on first load.
+
+To remove it: right-click the icon in the Launcher → **Uninstall**. It stores about 1&nbsp;MB in the browser
+profile; nothing is written to ChromeOS itself.
+
+### Option 2 — run it locally on the Chromebook (Linux container)
+
+1. **Settings → About ChromeOS → Developers → Linux development environment → Turn on** (one-time, ~10 min).
+2. Download this folder: GitHub → **Code → Download ZIP**, unzip in Files, then move the `winvm` folder into
+   the **Linux files** area.
+3. Open the **Terminal** app and run:
+
+   ```bash
+   cd winvm && python3 -m http.server 8080
+   ```
+
+4. Open `http://localhost:8080` in Chrome and install it as an app (Option 1, step 2). After the first load the
+   installed window keeps working even if you stop the server.
+
+### Option 3 — give it a permanent URL
+
+Any static host works, because there is no build step and no server-side code:
+
+- **GitHub Pages** — fork the repo, then *Settings → Pages → Deploy from a branch* with the folder `/winvm`.
+- **Netlify Drop** — drag the `winvm` folder onto <https://app.netlify.com/drop>.
+- Or any object storage / web server you already have.
+
+> The sandbox preview URL only lives as long as this session, so host it (or run it locally) if you want an
+> install that stays put.
+
 ## What actually works
 
 | Area | Details |
@@ -62,7 +105,9 @@ winvm/
 ├── index.html          the shell markup
 ├── css/xp.css          desktop, taskbar, start menu, window chrome, boot screens
 ├── css/apps.css        per-program styling
-├── assets/bliss.jpg    the wallpaper
+├── manifest.webmanifest  PWA manifest (name, icons, shortcuts)
+├── sw.js               service worker: full offline cache
+├── assets/             wallpaper + app icons (192/512/maskable/apple-touch)
 ├── js/main.js          boot, wiring, taskbar, keyboard
 ├── js/core/            fs, wm (window manager), menu, shell, icons, sound, settings,
 │                       desktop, startmenu, boot, screensaver, wallpapers, util
